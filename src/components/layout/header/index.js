@@ -33,7 +33,6 @@ export default function Header() {
 	const FORTMATIC_KEY = "pk_test_8F16BED4B4CD6116" // for FORTMATIC testing
 	const PORTIS_ID = "1de60dd1-e77a-4efa-9278-93319070fef9" //https://dashboard.portis.io/
 
-
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -42,7 +41,6 @@ export default function Header() {
 	const [wallet, set_wallet] = useState([true, true, true, true, true]);
 	const [wallet_loading, set_loading] = useState(false);
 	const [flag_connect, set_connect] = useState(0);
-
 
 	const DESKTOP_CONNECTORS = {
 		MetaMask: injected,
@@ -69,11 +67,9 @@ export default function Header() {
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
 		width: '40%',
-
 		boxShadow: 30,
-
-
 	};
+
 	const style2 = {
 		display: "flex",
 		flexDirection: 'column',
@@ -99,13 +95,8 @@ export default function Header() {
 	}
 
 	const connectWallet1 = (currentConnector) => {
-		// set_loading(true);
-		// setOpen(false);
 		activate(currentConnector);
-
-
 	}
-
 
 	async function connectWallet() {
 		if( web3Loading)
@@ -135,33 +126,11 @@ export default function Header() {
 		// 	// })
 		// })
 
-		// if (show_btn === false) {
-		// 	set_loading(true);
-		// 	await getweb3().then((response) => {
-		// 		console.log(response)
-		// 		response.eth.getAccounts().then((result) => {
-		// 			setOpen(false);
-		// 			set_show(true)
-		// 			var temp = result[0].toString();
-		// 			set_address(temp);
-		// 			// set_loading(false);
-		// 			set_wallet([true, true, true, true, true]);
-		// 			// response.eth.getBalance(result[0]).then((result) => {
-		// 			// 	 console.log('balance:', parseFloat(result).toFixed(1))
-
-		// 			// })
-		// 		})
-		// 	})
-		// }
-		// else {
-		// 	set_loading(false);
-		// }
 	}
 
 	const disconnect = async()=> {
 		deactivate();
 		set_connect(0);
-		// handleOpen();
 		// await window.ethereum.request({
 		// 	method: "wallet_requestPermissions",
 		// 	params: [
@@ -195,10 +164,6 @@ export default function Header() {
 								flag_connect === 2 ? <><button className="button-blue-border" style={{ marginRight: '2%' }} >3.0 FAITH Reserved</button> <button className="button-blue-border" style={{ marginRight: '2%' }} onClick={() => { disconnect();}}>{wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1)}</button><button className="button-blue-border" >...</button></> : ''
 					}
 				</>
-				{/* {web3Loading ? <button className="button-blue-border" disabled>Loading...</button> :
-					<>{show_btn ? <button className="button-blue-border" style={{ marginRight: '2%' }} >3.0 FAITH Reserved</button> : ''}
-						<button className="button-blue-border" style={{marginRight: '2%'}} onClick={() => { show_btn ? disconnect() : handleOpen() }}>{show_btn ? wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1) : "RESERVE NOW"}</button>
-						{show_btn ? <button className="button-blue-border" >...</button> : ''}</>} */}
 			</div>
 
 			<Modal
@@ -223,8 +188,6 @@ export default function Header() {
 									set_connect(0);
 									handleClose();
 									set_wallet([true, true, true, true, true]);
-									// set_loading(false);
-									// set_show(false);
 								}}><MdClose fontSize="24px" color="white"></MdClose></Box>
 							<Box display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >CONNECT TO A WALLET</Box>
 							<Box display="flex" fontSize='16px' ineHeight='19px' flexDirection="column" marginTop="2%">
