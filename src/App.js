@@ -35,8 +35,14 @@ import slide_up from './assets/slide_up.png'
 
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import Carousel from 'nuka-carousel';
-
 import Btn_hotstop from './components/buttons/hotspot'
+import { Web3ReactProvider } from '@web3-react/core'
+import Web3 from 'web3'
+
+function getLibrary(provider) {
+  return new Web3(provider)
+}
+
 
 
 function getWindowDimensions() {
@@ -126,6 +132,8 @@ function App() {
   }
 
   return (
+    <>
+    <Web3ReactProvider getLibrary={getLibrary}>
     <Router>
       <div>
         <Header />
@@ -418,6 +426,8 @@ function App() {
         </div>
       </div>
     </Router>
+    </Web3ReactProvider>
+    </>
   );
 }
 
