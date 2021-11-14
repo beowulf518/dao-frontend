@@ -2,6 +2,7 @@
 
 .header-wrapper {
 	background-image: url("../../../assets/top_header1.png");
+	backdrop-filter: blur(10px);
 	position: fixed;
 	z-index: 2;
 	top: 0;
@@ -16,6 +17,7 @@
 		text-align: center;
 		padding: 12px 22px;
 		.header-text {
+			flex:1;
 			display: inline-block;
 			font-weight: 500;
 			font-size: 31px;
@@ -25,6 +27,9 @@
 		}
 	}
 	.connect-button-wrapper {
+		display: flex;
+		flex:1;
+		justify-content: flex-end;
 		padding: 0 20px;
 
 	}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Modal, Backdrop } from '@material-ui/core'
+import { Box, Modal } from '@material-ui/core'
 import { MdClose } from 'react-icons/md'
 import "../../styles_global.scss";
 import styled from 'styled-components'
@@ -45,13 +45,16 @@ export default function Header() {
 
 	};
 
-	const [wallet_address, set_address] = useState('');
+	const [wallet_address, set_address] = useState('RESERVE NOW');
 
 	async function connectWallet() {
 		set_loading(true);
 		await getweb3().then((response) => {
+			console.log(response)
 			response.eth.getAccounts().then((result) => {
-				set_address(result);
+				setOpen(false)
+				var temp = result[0].toString();
+				set_address(temp.slice(0,6)+"..."+temp.slice(temp.length-5, temp.length-1));
 				// response.eth.getBalance(result[0]).then((result) => {
 				// 	 console.log('balance:', parseFloat(result).toFixed(1))
 					
@@ -77,10 +80,206 @@ export default function Header() {
 				<div className="header-text text-gradient">TRIBE</div>
 			</div>
 			<div className="connect-button-wrapper">
-				{web3Loading ? <button className="button-blue-border" disabled>Loading...</button> : <button className="button-blue-border" onClick={()=>{handleOpen()}}>RESERVE NOW</button>}
+				{web3Loading ? <button className="button-blue-border" disabled>Loading...</button> :
+				<><button className="button-blue-border" style={{
+					marginRight:'2%'
+				}} >3.0 FAITH Reserved</button>
+				<button className="button-blue-border" style={{
+					marginRight:'2%'
+				}} onClick={()=>{handleOpen()}}>{wallet_address}</button>
+				<button className="button-blue-border" >...</button></>}
 			</div>
 
+			<Modal
+				open={open}
+				// onClose={handleClose}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+				style={{
+					backdropFilter:'blur(10px)'
+				}}
+			>
+				<Box sx={style1}>
+					<Box display="flex" justifyContent="center" marginBottom="2%" fontSize="72px" lineHeight="72px" fontWeight="200" sx={{
+							'background': 'linear-gradient(150deg,  #E4CB6F 20%,#DB5994 50% ,#7735BD 60%)',
+							'-webkit-background-clip': 'text',
+							'-webkit-text-fill-color': 'transparent'
+					}}>RESERVE</Box>
+					<Box sx={style2}>
+						<Box display="flex" flex="1" flexDirection="column" width="100%">
+							<Box display="flex" fontSize='24px' fontWeight='bold' color='white' lineHeight='28px' marginTop="2%" justifyContent="flex-end" marginRight="2%" 
+							onClick={() => {handleClose();
+							set_wallet([true, true, true, true, true]);
+							set_loading(false);
+							}}><MdClose fontSize="24px" color="white"></MdClose></Box>
+							<Box display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >CONNECT TO A WALLET</Box>
+							<Box display="flex" fontSize='16px' ineHeight='19px' flexDirection="column" marginTop="2%">
+								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold">By connecting a wallet, you agree to Faith Connexion’s</Box>
+								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold"><Box color="white" style={{textDecoration:'underline'}}>Terms of Service</Box>{'\u00a0'} and acknowledge that you have read and </Box>
+								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold">understand the {'\u00a0'} <Box color="white" style={{textDecoration:'underline'}}>FAITH TRIBE protocol disclaimer.</Box></Box>
+							</Box>
+						</Box>
+						<Box display="flex" flex="4" flexDirection="column" alignItems="center" width="100%" marginTop="10%" marginBottom="10%" alignItems="center" justifyContent="center">
+							<Meta display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet0={wallet[0]} >
+								<Box sx={{
+									cursor: 'pointer',
+									display: 'flex',
+									transition: 'ease-out 0.4s',
+									alignItems: 'center',
+									border: '1px solid white',
+									width: "100%",
+									boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+									paddingLeft: '10%',
+									height:65
+								}} onClick={()=>{set_wallet([true, false, false, false, false]);
+									connectWallet();}} >
+									<img src={metamask} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>METAMASK</Box>
+									{wallet_loading?<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>:''}
+								</Box>
+							</Meta>
+							<Wallet display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet1={wallet[1]}>
+								<Box sx={{
+									cursor: 'pointer',
+									display: 'flex',
+									transition: 'ease-out 0.4s',
+									alignItems: 'center',
+									border: '1px solid white',
+									width: "100%",
+									boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+									paddingLeft: '10%',
+									height:65
+								}} onClick={()=>{set_wallet([false, true, false, false, false]);
+									connectWallet1();}} >
+									<img src={walletconnect} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>WALLETCONNECT</Box>
+									{wallet_loading?<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box>:''}
+								</Box>
+							</Wallet>
+							<Coin display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet2={wallet[2]}>
+								<Box sx={{
+									cursor: 'pointer',
+									display: 'flex',
+									transition: 'ease-out 0.4s',
+									alignItems: 'center',
+									border: '1px solid white',
+									width: "100%",
+									boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+									paddingLeft: '10%',
+									height:65
+								}} onClick={()=>{set_wallet([false, false, true, false, false]);
+									connectWallet1();}}  >
+									<img src={coinbase} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>COINBASE</Box>
+									{wallet_loading?<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box>:''}
+								</Box>
+							</Coin>
+							<Fort display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet3={wallet[3]}>
+								<Box sx={{
+									cursor: 'pointer',
+									display: 'flex',
+									transition: 'ease-out 0.4s',
+									alignItems: 'center',
+									border: '1px solid white',
+									width: "100%",
+									boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+									paddingLeft: '10%',
+									height:65
+								}}  onClick={()=>{set_wallet([false, false, false, true, false]);
+									connectWallet1();}} >
+									<img src={fortmatic} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>FORTMATIC</Box>
+									{wallet_loading?<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box>:''}
+								</Box>
+							</Fort>
+							<Port display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%"  wallet4={wallet[4]}>
+								<Box sx={{
+									cursor: 'pointer',
+									display: 'flex',
+									transition: 'ease-out 0.4s',
+									alignItems: 'center',
+									border: '1px solid white',
+									width: "100%",
+									boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+									paddingLeft: '10%',
+									height: 65
+								}}  onClick={()=>{set_wallet([false, false, false, false, true]);
+									connectWallet1();}} >
+									<img src={portis} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>PORTIS</Box>
+									{wallet_loading?<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box>:''}
+								</Box>
+							</Port>
 
+						</Box>
+					</Box>
+					{/* <Box display='flex' flexDirection='column' height="100%" width='100%'>
+                        <Box display='flex' alignItems="center" height="100%" flex='1' >
+                            <Box sx={{
+                                width: '100%',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                padding: '16px',
+                                transition: 'ease-out 0.4s',
+                                alignItems: 'center',
+                                borderRadius: '12px',
+                                flexDirection: 'row',
+                                backgroundColor: '#FCFCFC',
+                                boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                                height: '50%',
+                            }} onClick={() => { handleConnect(walletConnectors['MetaMask']) }}>
+                                <img src={metamask} width="40px" height="40px"></img><Connect_btn_letter fontWeight='bold' margin='20px' color='#337ab7' fontSize='1.25rem'>MetaMask</Connect_btn_letter>
+                            </Box>
+                        </Box>
+                        <Box display='flex' alignItems="center" height="100%" flex='1'>
+                            <Box sx={{
+                                width: '100%',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                padding: '16px',
+                                transition: 'ease-out 0.4s',
+                                alignItems: 'center',
+                                borderRadius: '12px',
+                                flexDirection: 'row',
+                                backgroundColor: '#FCFCFC',
+                                boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                                height: '50%',
+                            }} onClick={() => { handleConnect(walletConnectors['WalletConnect']) }}>
+                                <img src={walletconnect} width="40px" height="40px"></img><Connect_btn_letter fontWeight='bold' margin='20px' color='#337ab7' fontSize='1.25rem'>WalletConnect</Connect_btn_letter>
+                            </Box>
+                        </Box>
+                        <Box display='flex' alignItems="center" height="100%" flex='1'>
+                            <Box sx={{
+                                width: '100%',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                padding: '16px',
+                                transition: 'ease-out 0.4s',
+                                alignItems: 'center',
+                                borderRadius: '12px',
+                                flexDirection: 'row',
+                                backgroundColor: '#FCFCFC',
+                                boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                                height: '50%',
+                            }} onClick={() => { handleConnect(walletConnectors['BinanceWallet']) }}>
+                                <img src={binance} width="40px" height="40px"></img><Connect_btn_letter fontWeight='bold' margin='20px' color='#337ab7' fontSize='1.25rem'>BinanceWallet</Connect_btn_letter>
+                            </Box>
+                        </Box>
+                        <Box display='flex' alignItems="center" height="100%" flex='1'>
+                            <Box sx={{
+                                width: '100%',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                padding: '16px',
+                                transition: 'ease-out 0.4s',
+                                alignItems: 'center',
+                                borderRadius: '12px',
+                                flexDirection: 'row',
+                                backgroundColor: '#FCFCFC',
+                                boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                                height: '50%',
+                            }} onClick={() => { handleConnect(walletConnectors['TrustWallet']) }}>
+                                <img src={trust} width="40px" height="40px"></img><Connect_btn_letter fontWeight='bold' margin='20px' color='#337ab7' fontSize='1.25rem'>TrustWallet</Connect_btn_letter>
+                            </Box>
+                        </Box>
+                    </Box> */}
+				</Box>
+			</Modal>
 			{/* <div className="wallet-result-modal" id="modal">
 				<h1>RESERVE FAITH TOKEN</h1>
 				<div className="balance-card">

@@ -8,7 +8,7 @@ export default function Navbar(props) {
 			<div className="navbar-item-list">
 				<div className="navbar-item">HOME</div>
 				<div className="navbar-item">WHITEPAPER</div>
-				<div className="navbar-item">Reservation Event</div>
+				<div className="navbar-item">RESERVATION EVENT</div>
 				<div className="navbar-item">SHOP</div>
 			</div>
 			<div className="text-gradient text-showcase">BASEL SHOWCASE</div>
