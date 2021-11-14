@@ -55,8 +55,59 @@ export default function Header() {
 		TrustWallet: trustWallet,
 		BinanceWallet: binance_wallet,
 	};
+
 	const walletConnectors = DESKTOP_CONNECTORS;
 	const { account, connector, active, error, activate, deactivate } = useWeb3React();
+
+	const [wallet_address, set_address] = useState('RESERVE NOW');
+
+	const connectformatic = async () => {
+		const fm = new Fortmatic(FORMATIC_API_KEY);
+		let web3 = new Web3(fm.getProvider());
+		const accounts = await web3.eth.getAccounts();
+	};
+
+	const connect_portis = async () => {
+		const portis = new Portis('93b768a1-12b2-4c87-be0f-ed7314f7a856', 'mainnet');
+		const web3 = new Web3(portis.provider);
+		const accounts = await portis.provider.enable();
+	}
+
+	const connectWallet1 = (currentConnector) => {
+		activate(currentConnector);
+	}
+
+	async function connectWallet() {
+		if (web3Loading) {
+			set_connect(1);
+		}
+		await getweb3().then((response) => {
+
+			set_connect(2);
+			handleClose();
+			set_wallet([true, true, true, true, true]);
+
+			response.eth.getAccounts().then((result) => {
+				set_address(result[0].toString());
+				response.eth.getBalance(result[0]).then((result) => {
+					console.log('balance:', parseFloat(result).toFixed(1))
+				})
+			});
+		});
+	}
+
+	const disconnect = async () => {
+		deactivate();
+		set_connect(0);
+		// await window.ethereum.request({
+		// 	method: "wallet_requestPermissions",
+		// 	params: [
+		// 	  {
+		// 		eth_accounts: {}
+		// 	  }
+		// 	]
+		//   });
+	}
 
 	const style1 = {
 		display: "flex",
@@ -80,74 +131,8 @@ export default function Header() {
 
 	};
 
-	const [wallet_address, set_address] = useState('RESERVE NOW');
-
-	const connectformatic = async () => {
-		const fm = new Fortmatic(FORMATIC_API_KEY);
-		let web3 = new Web3(fm.getProvider());
-		const accounts = await web3.eth.getAccounts();
-	};
-
-	const connect_portis = async () => {
-		const portis = new Portis('93b768a1-12b2-4c87-be0f-ed7314f7a856', 'mainnet');
-		const web3 = new Web3(portis.provider);
-		const accounts = await portis.provider.enable();
-	}
-
-	const connectWallet1 = (currentConnector) => {
-		activate(currentConnector);
-	}
-
-	async function connectWallet() {
-		if( web3Loading)
-		{
-			set_connect(1);
-		}
-		await getweb3().then((response) => {
-
-			set_connect(2);
-			handleClose();
-			set_wallet([true, true, true, true, true]);
-
-			response.eth.getAccounts().then((result) => {
-				set_address(result[0].toString());
-			});
-		});
-		// response.eth.getAccounts().then((result) => {
-		// 	setOpen(false);
-		// 	set_show(true)
-		// 	var temp = result[0].toString();
-		// 	set_address(temp);
-		// 	// set_loading(false);
-		// 	set_wallet([true, true, true, true, true]);
-		// 	// response.eth.getBalance(result[0]).then((result) => {
-		// 	// 	 console.log('balance:', parseFloat(result).toFixed(1))
-
-		// 	// })
-		// })
-
-	}
-
-	const disconnect = async()=> {
-		deactivate();
-		set_connect(0);
-		// await window.ethereum.request({
-		// 	method: "wallet_requestPermissions",
-		// 	params: [
-		// 	  {
-		// 		eth_accounts: {}
-		// 	  }
-		// 	]
-		//   });
-
-		//   set_address("RESERVE NOW");
-
-	}
-
 	useEffect(() => {
-		// document.getElementById("modal").style.display = modalShow
-		// document.getElementById("main-container").style.opacity = modalShow === "block" ? 0.2 : 1
-		// document.getElementById("header-title").style.opacity = modalShow === "block" ? 0.2 : 1
+
 	})
 
 	return (
@@ -161,14 +146,14 @@ export default function Header() {
 					{
 						flag_connect === 0 ? <button className="button-blue-border" onClick={() => { handleOpen() }}>RESERVE NOW</button> :
 							flag_connect === 1 ? <button className="button-blue-border" >LOADING...</button> :
-								flag_connect === 2 ? <><button className="button-blue-border" style={{ marginRight: '2%' }} >3.0 FAITH Reserved</button> <button className="button-blue-border" style={{ marginRight: '2%' }} onClick={() => { disconnect();}}>{wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1)}</button><button className="button-blue-border" >...</button></> : ''
+								flag_connect === 2 ? <><button className="button-blue-border" style={{ marginRight: '2%' }} >3.0 FAITH Reserved</button> <button className="button-blue-border" style={{ marginRight: '2%' }} onClick={() => { disconnect(); }}>{wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1)}</button><button className="button-blue-border" >...</button></> : ''
 					}
 				</>
 			</div>
 
 			<Modal
 				open={open}
-				// onClose={handleClose}
+				// onClose={handleClose}  // disable backdrop
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
 				style={{
@@ -212,11 +197,9 @@ export default function Header() {
 									set_wallet([true, false, false, false, false]);
 									connectWallet();
 									set_connect(1);
-
 								}} >
 									<img src={metamask} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>METAMASK</Box>
-									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
-									{/* {show_btn ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px' marginRight="15%">{wallet_address.slice(0, 9) + "..." + wallet_address.slice(wallet_address.length - 7, wallet_address.length - 1)}</Box> : (wallet_loading ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> : '')} */}
+									{flag_connect === 0 ? '' : <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Meta>
 							<Wallet display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet1={wallet[1]}>
@@ -236,7 +219,7 @@ export default function Header() {
 									set_connect(1);
 								}} >
 									<img src={walletconnect} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>WALLETCONNECT</Box>
-									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
+									{flag_connect === 0 ? '' : <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Wallet>
 							<Coin display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet2={wallet[2]}>
@@ -256,7 +239,7 @@ export default function Header() {
 									set_connect(1);
 								}}  >
 									<img src={coinbase} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>COINBASE</Box>
-									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
+									{flag_connect === 0 ? '' : <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Coin>
 							<Fort display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet3={wallet[3]}>
@@ -276,7 +259,7 @@ export default function Header() {
 									set_connect(1);
 								}} >
 									<img src={fortmatic} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>FORTMATIC</Box>
-									{flag_connect === 0  ? '': <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
+									{flag_connect === 0 ? '' : <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Fort>
 							<Port display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet4={wallet[4]}>
@@ -296,7 +279,7 @@ export default function Header() {
 									set_connect(1);
 								}} >
 									<img src={portis} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>PORTIS</Box>
-									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>  }
+									{flag_connect === 0 ? '' : <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Port>
 
