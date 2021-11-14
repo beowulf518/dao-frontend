@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@portis/web3": "^4.0.6",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -13,6 +14,7 @@
     "@web3-react/walletconnect-connector": "^6.2.8",
     "@web3-react/walletlink-connector": "^6.2.8",
     "authereum": "^0.1.14",
+    "fortmatic": "^2.2.1",
     "install": "^0.13.0",
     "npm": "^7.21.0",
     "nuka-carousel": "^4.8.2",

@@ -14,6 +14,9 @@ import {
 } from "../../../utils/connectors";
 import _ from "lodash";
 import { useWeb3React } from '@web3-react/core'
+import Fortmatic from "fortmatic"
+import Web3 from "web3";
+import Portis from "@portis/web3";
 
 
 import metamask from "../../../assets/wallet_icons/metamask.png";
@@ -23,7 +26,14 @@ import fortmatic from "../../../assets/wallet_icons/fortmatic.png";
 import portis from "../../../assets/wallet_icons/portis.png";
 import cache from '../../../utils/cache'
 
+
+
 export default function Header() {
+	const FORMATIC_API_KEY = "pk_live_9613401E26B091DA";
+	const FORTMATIC_KEY = "pk_test_8F16BED4B4CD6116" // for FORTMATIC testing
+	const PORTIS_ID = "1de60dd1-e77a-4efa-9278-93319070fef9" //https://dashboard.portis.io/
+
+
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -48,7 +58,7 @@ export default function Header() {
 		BinanceWallet: binance_wallet,
 	};
 	const walletConnectors = DESKTOP_CONNECTORS;
-	const { account,connector,active,error , activate, deactivate } = useWeb3React();
+	const { account, connector, active, error, activate, deactivate } = useWeb3React();
 
 	const style1 = {
 		display: "flex",
@@ -80,6 +90,25 @@ export default function Header() {
 		set_loading(true);
 		activate(currentConnector);
 		setOpen(false);
+
+	}
+
+	const connectformatic = async () => {
+		const fm = new Fortmatic(FORMATIC_API_KEY);
+		let web3 = new Web3(fm.getProvider());
+		const accounts = await web3.eth.getAccounts();
+	};
+
+	const connect_fortis = async () => {
+		const portis = new Portis('93b768a1-12b2-4c87-be0f-ed7314f7a856', 'mainnet');
+  		const web3 = new Web3(portis.provider);
+		const accounts = await portis.provider.enable();
+		// const portis = new window.Portis(
+		// 	process.env.REACT_APP_PORTIS_DAPP_ID,
+		// 	"rinkeby"
+		// );
+		// let web3 = new window.Web3(portis.provider);
+		// await web3.getAccount();
 
 	}
 
@@ -142,7 +171,7 @@ export default function Header() {
 					}} >3.0 FAITH Reserved</button> : ''}
 						<button className="button-blue-border" style={{
 							marginRight: '2%'
-						}} onClick={() => { show_btn?disconnect():handleOpen() }}>{show_btn ? wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1) : "RESERVE NOW"}</button>
+						}} onClick={() => { show_btn ? disconnect() : handleOpen() }}>{show_btn ? wallet_address.slice(0, 6) + "..." + wallet_address.slice(wallet_address.length - 5, wallet_address.length - 1) : "RESERVE NOW"}</button>
 						{show_btn ? <button className="button-blue-border" >...</button> : ''}</>}
 			</div>
 
@@ -247,7 +276,7 @@ export default function Header() {
 									height: 65
 								}} onClick={() => {
 									set_wallet([false, false, false, true, false]);
-									connectWallet1();
+									connectformatic();
 								}} >
 									<img src={fortmatic} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>FORTMATIC</Box>
 									{wallet_loading ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box> : ''}
@@ -266,7 +295,7 @@ export default function Header() {
 									height: 65
 								}} onClick={() => {
 									set_wallet([false, false, false, false, true]);
-									connectWallet1();
+									connect_fortis();
 								}} >
 									<img src={portis} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>PORTIS</Box>
 									{wallet_loading ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please install wallet.</Box> : ''}

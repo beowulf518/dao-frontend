@@ -3,8 +3,6 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { ethers } from "ethers";
 
-
-
 const AVALANCHE_MAINNET_PARAMS = {
   chainId: '0xa86a',
   chainName: 'Avalanche Mainnet C-Chain',
