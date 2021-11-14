@@ -175,8 +175,6 @@ export default function Header() {
 
 	}
 
-
-
 	useEffect(() => {
 		// document.getElementById("modal").style.display = modalShow
 		// document.getElementById("main-container").style.opacity = modalShow === "block" ? 0.2 : 1
@@ -250,10 +248,11 @@ export default function Header() {
 								}} onClick={() => {
 									set_wallet([true, false, false, false, false]);
 									connectWallet();
+									set_connect(1);
 
 								}} >
 									<img src={metamask} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>METAMASK</Box>
-									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please connect wallet.</Box> }
+									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
 									{/* {show_btn ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px' marginRight="15%">{wallet_address.slice(0, 9) + "..." + wallet_address.slice(wallet_address.length - 7, wallet_address.length - 1)}</Box> : (wallet_loading ? <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> : '')} */}
 								</Box>
 							</Meta>
@@ -271,9 +270,10 @@ export default function Header() {
 								}} onClick={() => {
 									set_wallet([false, true, false, false, false]);
 									connectWallet1(walletConnectors['WalletConnect']);
+									set_connect(1);
 								}} >
 									<img src={walletconnect} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>WALLETCONNECT</Box>
-									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please connect wallet.</Box> }
+									{flag_connect === 0 ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
 								</Box>
 							</Wallet>
 							<Coin display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet2={wallet[2]}>
@@ -290,9 +290,10 @@ export default function Header() {
 								}} onClick={() => {
 									set_wallet([false, false, true, false, false]);
 									connectWallet1(walletConnectors['Coinbase']);
+									set_connect(1);
 								}}  >
 									<img src={coinbase} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>COINBASE</Box>
-									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please connect wallet.</Box>}
+									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>}
 								</Box>
 							</Coin>
 							<Fort display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet3={wallet[3]}>
@@ -309,9 +310,10 @@ export default function Header() {
 								}} onClick={() => {
 									set_wallet([false, false, false, true, false]);
 									connectformatic();
+									set_connect(1);
 								}} >
 									<img src={fortmatic} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>FORTMATIC</Box>
-									{flag_connect === 0  ? '': <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please connect wallet.</Box> }
+									{flag_connect === 0  ? '': <Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box> }
 								</Box>
 							</Fort>
 							<Port display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet4={wallet[4]}>
@@ -328,9 +330,10 @@ export default function Header() {
 								}} onClick={() => {
 									set_wallet([false, false, false, false, true]);
 									connect_portis();
+									set_connect(1);
 								}} >
 									<img src={portis} width="40px" height="40px"></img><Box fontWeight='bold' marginLeft='10%' color='white' fontSize='16px'>PORTIS</Box>
-									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Please connect wallet.</Box>  }
+									{flag_connect === 0  ? '':<Box fontWeight='bold' marginLeft='15%' color='white' fontSize='16px'>Initializing...</Box>  }
 								</Box>
 							</Port>
 
