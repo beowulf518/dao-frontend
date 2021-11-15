@@ -162,7 +162,7 @@ function App() {
                     )}
                   >
                     <Box display="flex" width="100%" height="100%" position="relative">
-                      <img src={img1} width="100%" height="100%"></img>
+                      <img src={img1}  style={{backgroundSize: "100% auto"}}></img>
                       <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
                     </Box>
                     <Box display="flex" width="100%" height="100%" position="relative">
