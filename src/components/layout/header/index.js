@@ -28,7 +28,7 @@ import cache from '../../../utils/cache'
 
 
 
-export default function Header() {
+export default function Header({flag_con_wallet, set_con_wallet}) {
 	const FORMATIC_API_KEY = "pk_live_9613401E26B091DA";
 	const FORTMATIC_KEY = "pk_test_8F16BED4B4CD6116" // for FORTMATIC testing
 	const PORTIS_ID = "1de60dd1-e77a-4efa-9278-93319070fef9" //https://dashboard.portis.io/
@@ -82,7 +82,7 @@ export default function Header() {
 			set_connect(1);
 		}
 		await getweb3().then((response) => {
-
+			set_con_wallet(true);
 			set_connect(2);
 			handleClose();
 			set_wallet([true, true, true, true, true]);
@@ -99,6 +99,7 @@ export default function Header() {
 	const disconnect = async () => {
 		deactivate();
 		set_connect(0);
+		set_con_wallet(false);
 		// await window.ethereum.request({
 		// 	method: "wallet_requestPermissions",
 		// 	params: [
@@ -171,8 +172,9 @@ export default function Header() {
 							<Box display="flex" fontSize='24px' fontWeight='bold' color='white' lineHeight='28px' marginTop="2%" justifyContent="flex-end" marginRight="2%"
 								onClick={() => {
 									set_connect(0);
-									handleClose();
+									handleClose();	
 									set_wallet([true, true, true, true, true]);
+									set_con_wallet(false);
 								}}><MdClose fontSize="24px" color="white"></MdClose></Box>
 							<Box display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >CONNECT TO A WALLET</Box>
 							<Box display="flex" fontSize='16px' ineHeight='19px' flexDirection="column" marginTop="2%">

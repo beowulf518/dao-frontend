@@ -1,7 +1,262 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import styled from 'styled-components'
+import { Box, Modal } from '@material-ui/core'
+import { MdClose } from 'react-icons/md'
+import { FaMediumM } from 'react-icons/fa'
+import { BsArrowDown, BsDiscord, BsTwitter, BsTelegram} from 'react-icons/bs';
 
-export default function Reserve() {
+import back_img1 from "../../assets/right_panel_reserve2.png";
+import eth1 from '../../assets/eth1.png';
+import faith1 from '../../assets/faith1.png';
+
+
+export default function Reserve({ flag_con_wallet }) {
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	const style1 = {
+		display: "flex",
+		flexDirection: 'column',
+		alignItems: 'center',
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		width: '40%',
+		boxShadow: 30,
+	};
+
+	const style2 = {
+		display: "flex",
+		flexDirection: 'column',
+		alignItems: 'center',
+		width: '100%',
+		backgroundColor: '#2DAFB2',
+		justifyContent: 'center',
+		height: '540px',
+		position: ' relative'
+
+	};
+
+	const [flag_success, set_success] = useState(false);
+
+	const trans_success = () => {
+		handleClose();
+		set_success(true);
+
+	}
+
 	return (
-		<div>Reserve Page</div>
+		<Reserve_body >
+			<Box_letter display="flex" marginTop="15%" color="white" justifyContent="center" fontSize="72px" fontWeight="200" lineHeight="72px" >RESERVE</Box_letter>
+			<Box textAlign="center" color="white" fontSize="16px" lineHeight="28px" marginTop="2%">
+				Event state and details go here. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut<br />
+				laoreet dolore magna aliquam erat volutpat.  Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis <br />
+				nisl ut aliquip ex ea commodo consequat.
+			</Box>
+			<Before flag_success={flag_success} alignItems="center" flexDirection="column" width="60%" height="400px" border="1px solid rgb(112 63 145)" marginTop="5%" bgcolor="rgba(42, 20, 72, 0.85)">
+				<Box_letter1 display="flex" flex="1" justifyContent="center" alignItems="center">Reserve your faith tribe</Box_letter1>
+				<Box flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
+					Reserve details go here. ipsum dolor sit amet, consectetuer adipiscing elit,<br />
+					sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna <br />
+					aliquam erat volutpat. <br />
+					<br />
+					Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper <br />
+					suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+				</Box>
+				<Box display="flex" flex="1" justifyContent="center" alignItems="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">Balance: 21.33ETH</Box>
+				<Box display="flex" flex="1" justifyContent="center" alignItems="flex-start" width="28%">
+					<Btn_reserve1 display="flex" justifyContent="center" alignItems="center" onClick={() => { handleOpen() }}> RESERVE</Btn_reserve1>
+				</Box>
+
+			</Before>
+
+			<Success flag_success={flag_success} alignItems="center" flexDirection="column" width="60%" height="341px" border="1px solid rgb(112 63 145)" marginTop="5%" bgcolor="rgba(42, 20, 72, 0.85)">
+				<Box_letter1 display="flex" flex="1" justifyContent="center" alignItems="center">RESERVATION SUCCESSFUL!</Box_letter1>
+				<Box flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
+					Congratulations on reserving your FAITH TRIBE!
+					<br />
+					<br />
+
+					We encourage you to share on Twitter and join the FAITH CONNECTION <br />
+					TRIBE Discord to get involved in governance.
+				</Box>
+				<Box display="flex" flex="1" alignItems="flex-start" width="40%">
+					<Box display="flex" flex="1" alignItems="center" justifyContent="center" >
+						<Box display="flex" borderRadius="100%" bgcolor="white" width="34px" height="34px" alignItems="center" justifyContent="center">
+							<BsDiscord fontSize="18px" color="rgb(42, 20, 72)"></BsDiscord>
+						</Box>
+					</Box>
+					<Box display="flex" flex="1" alignItems="center" justifyContent="center" >
+						<Box display="flex" borderRadius="100%" bgcolor="white" width="34px" height="34px" alignItems="center" justifyContent="center">
+							<BsTelegram fontSize="18px" color="rgb(42, 20, 72)"></BsTelegram>
+						</Box>
+					</Box>
+					<Box display="flex" flex="1" alignItems="center" justifyContent="center" >
+						<Box display="flex" borderRadius="100%" bgcolor="white" width="34px" height="34px" alignItems="center" justifyContent="center">
+							<BsTwitter fontSize="18px" color="rgb(42, 20, 72)"></BsTwitter>
+						</Box>
+					</Box>
+					<Box display="flex" flex="1" alignItems="center" justifyContent="center" >
+						<Box display="flex" borderRadius="100%" bgcolor="white" width="34px" height="34px" alignItems="center" justifyContent="center">
+							<FaMediumM fontSize="18px" color="rgb(42, 20, 72)"></FaMediumM>
+						</Box>
+					</Box>
+
+				</Box>
+
+			</Success>
+
+			<Modal
+				open={open}
+				// onClose={handleClose}  // disable backdrop
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+				style={{
+					backdropFilter: 'blur(10px)'
+				}}
+			>
+				<Box sx={style1}>
+					<Box display="flex" justifyContent="center" marginBottom="2%" fontSize="72px" lineHeight="72px" fontWeight="200" sx={{
+						'background': 'linear-gradient(150deg,  #E4CB6F 20%,#DB5994 50% ,#7735BD 60%)',
+						'-webkit-background-clip': 'text',
+						'-webkit-text-fill-color': 'transparent'
+					}}>RESERVE</Box>
+					<Box sx={style2}>
+						<Box display="flex" flex="0.5" flexDirection="column" width="100%">
+							<Box display="flex" fontSize='24px' fontWeight='bold' color='white' lineHeight='28px' marginTop="2%" justifyContent="flex-end" marginRight="2%"
+								onClick={() => {
+									handleClose();
+								}}><MdClose fontSize="24px" color="white"></MdClose>
+							</Box>
+							<Box display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >RESERVE FAITH TRIBE</Box>
+						</Box>
+						<Box display="flex" flex="1" marginTop="3%" width="80%" border="1px solid white">
+							<Box display="flex" flex="7" flexDirection="column" marginLeft="5%">
+								<Box display="flex" flex='2' alignItems="center" fontSize="16px" color="white" lineHeight="19px" fontWeight="bold">
+									<img src={eth1} width="42px"></img><Box marginLeft="5%">ETH</Box>
+								</Box>
+								<Box display="flex" flex='1' alignItems="flex-start">
+									<Box display="flex" marginRight="5%" fontSize="14px" color="white" style={{ opacity: '0.6' }} lineHeight="18px">Balance:{'\u00a0'}{'\u00a0'}21.33{'\u00a0'}ETH</Box>
+									<Box display="flex" fontSize="14px" color="white" lineHeight="18px" fontWeight="bold">( MAX )</Box>
+								</Box>
+							</Box>
+							<Box display="flex" flex="3" justifyContent="flex-end" alignItems="center" >
+								<Box display="flex" marginRight="20%" color="white" fontWeight="300" fontSize="32px" lineHeight="130%">
+									0.0
+								</Box>
+							</Box>
+						</Box>
+						<Box display="flex" flex="1" marginTop="3px" width="80%" border="1px solid white">
+							<Box display="flex" flex="7" flexDirection="column" marginLeft="5%">
+								<Box display="flex" flex='2' alignItems="center" fontSize="16px" color="white" lineHeight="19px" fontWeight="bold">
+									<img src={faith1} width="42px"></img><Box marginLeft="5%">FAITH TRIBE</Box>
+								</Box>
+								<Box display="flex" flex='1' alignItems="flex-start">
+									<Box display="flex" marginRight="5%" fontSize="14px" color="white" style={{ opacity: '0.6' }} lineHeight="18px">Reserved:{'\u00a0'}{'\u00a0'}0{'\u00a0'}FAITH</Box>
+									{/* <Box display="flex" fontSize="14px" color="white" lineHeight="18px" fontWeight="bold">( MAX )</Box> */}
+								</Box>
+							</Box>
+							<Box display="flex" flex="3" justifyContent="flex-end" alignItems="center" >
+								<Box display="flex" marginRight="20%" color="white" fontWeight="300" fontSize="32px" lineHeight="130%">
+									0.0
+								</Box>
+							</Box>
+						</Box>
+						<Box display="flex" flex="1" width="100%" alignItems="center" justifyContent="center">
+							{
+								!flag_con_wallet ? <Box display="flex" width="40%" height="38px" bgcolor="white" style={{ opacity: '0.3' }} color="#2DAFB2" alignItems="center" justifyContent="center" fontSize="16px" lineHeight="19px">RESERVE</Box> :
+									<Btn_reserve display="flex" width="40%" height="38px" bgcolor="white" color="#2DAFB2" alignItems="center" justifyContent="center" fontSize="16px" lineHeight="19px" onClick={() => { trans_success(); }}>RESERVE</Btn_reserve>
+							}
+
+						</Box>
+						<Box display="flex" flex="1" justifyContent="center" fontSize="32px" lineHeight="130%" fontWeight="300" color="white">
+							1 ETH = 69568.2494 FAITH
+						</Box>
+						<Box position="absolute" display="flex" justifyContent="center" alignItems="center" borderRadius="100%" width="29px" height="29px" bgcolor="white" top="35%">
+							<BsArrowDown color="#06A9C0" fontSize="25px" fontWeight="bold"></BsArrowDown>
+						</Box>
+					</Box>
+				</Box>
+			</Modal>
+
+		</Reserve_body >
 	);
 }
+
+const Before = styled(Box)`
+	display: ${({ flag_success }) => flag_success ? 'none' : 'flex'};
+`
+
+const Success = styled(Box)`
+	display: ${({ flag_success }) => flag_success ? 'flex' : 'none'};
+`
+
+const Btn_reserve = styled(Box)`
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+	}
+
+	&:active {
+		cursor: pointer;
+		border-image: linear-gradient(#DB5994, #E4CB6F, #06A9C0) 1 1 1;
+		background-color: grey;
+	}
+`
+
+const Btn_reserve1 = styled(Box)`
+
+	width: 100%;
+	height: 39px !important;
+	background: black;
+	border: 1px solid #06A9C0;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	color: #FFFFFF;
+	cursor: pointer;
+	&:hover {
+		border-image: linear-gradient(#E4CB6F, #DB5994, #06A9C0) 1 1 1;
+		background-color: black;
+	}
+
+	&:active {
+		border-image: linear-gradient(#DB5994, #E4CB6F, #06A9C0) 1 1 1;
+		background-color: #000;
+	}
+`
+
+const Box_letter = styled(Box)`
+	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+`
+
+const Box_letter1 = styled(Box)`
+	font-style: normal;
+	font-weight: 200;
+	font-size: 36px;
+	line-height: 36px;
+	text-align: center;
+	text-transform: uppercase;
+	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+`
+
+const Reserve_body = styled(Box)`
+	width: 100%;
+	height: 100vh;
+	background-color: black;
+	background-image: url(${back_img1});
+	background-repeat: repeat-y;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`

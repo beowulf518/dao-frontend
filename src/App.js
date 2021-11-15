@@ -16,7 +16,7 @@ import Footer from './components/layout/footer'
 import Home from './pages/home'
 import About from './pages/about'
 import Whitepaper from './pages/whitepaper'
-import Reserve from './pages/whitepaper'
+import Reserve from './pages/reserve'
 import Claim from './pages/claim'
 import SimpleImageSlider from "react-simple-image-slider";
 
@@ -32,6 +32,8 @@ import img8 from './assets/slide/Untitled-1-15.png'
 import img9 from './assets/slide/Untitled-1-16.png'
 import img10 from './assets/slide/Untitled-1-17.png'
 import slide_up from './assets/slide_up.png'
+import yello_tri from './assets/yellow_tri.png'
+import left_slide1 from './assets/left_slide1.png';
 
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import Carousel from 'nuka-carousel';
@@ -72,6 +74,7 @@ function App() {
   const [bodyOpen, setBodyOpen] = useState(false)
   const [navModalOpen, setNavModalOpen] = useState(false)
   const [currentTip, setCurrentTip] = useState("")
+  const [ select1, set_select] = useState(false);
   const mobileMaxWidth = 625;
   let sidewidth = 862 * (height - 72) / 1864
 
@@ -131,137 +134,153 @@ function App() {
     setIndex(selectedIndex);
   }
 
+  const [flag_con_wallet, set_con_wallet] = useState(false);
+
   return (
     <>
-    <Web3ReactProvider getLibrary={getLibrary}>
-    <Router>
-      <div>
-        <Header />
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Router>
+          <div>
+            <Header flag_con_wallet={flag_con_wallet} set_con_wallet={set_con_wallet} />
 
-        <div id="main-container">
-          <div id="mobile-back">
-            {/* <button id="tip-button-shirt" className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button>
+            <div id="main-container">
+              <div id="mobile-back">
+                {/* <button id="tip-button-shirt" className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button>
             <button id="tip-button-shorts" className="tip-button" onClick={() => onHandleTip("shorts", "block")}><img src="/icon-tip-button.svg" alt="tip butto icon" /></button>
             <button id="tip-button-boots" className="tip-button" onClick={() => onHandleTip("boots", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button> */}
-            <Box display="flex" width="100%" height="100%" alignItems="center" justifyContent="center">
-              <Carousel renderCenterLeftControls={({ previousSlide }) => (
-                <button onClick={previousSlide} style={{ background: "none", border: 'none' }}>
-                  <FaCaretLeft color="7938D2" fontSize="50px"></FaCaretLeft>
-                </button>
-              )}
-                renderCenterRightControls={({ nextSlide }) => (
-                  <button onClick={nextSlide} style={{ background: "none", border: 'none' }}>
-                    <FaCaretRight color="7938D2" fontSize="50px"></FaCaretRight>
-                  </button>
-                )}
-              >
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img1} width="100%" height="100%"></img>
-                  <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img2} width="100%" height="100%"></img>
-                  <button style={{ left: "30%", top: "45%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img3} width="100%" height="100%"></img>
-                  <button style={{ left: "27%", top: "67%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img4} width="100%" height="100%"></img>
-                  <button style={{ left: "55%", top: "40%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img5} width="100%" height="100%"></img>
-                  <button style={{ left: "50%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img6} width="100%" height="100%"></img>
-                  <button style={{ left: "70%", top: "10%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img7} width="100%" height="100%"></img>
-                  <button style={{ left: "40%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img8} width="100%" height="100%"></img>
-                  <button style={{ left: "70%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img9} width="100%" height="100%"></img>
-                  <button style={{ left: "45%", top: "20%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img10} width="100%" height="100%"></img>
-                  <button style={{ left: "25%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
+                <Box display="flex" width="100%" height="100%" alignItems="center" justifyContent="center">
+                  <Carousel renderCenterLeftControls={({ previousSlide }) => (
+                    <button onClick={previousSlide} style={{ background: "none", border: 'none' }}>
+                      <FaCaretLeft color="7938D2" fontSize="50px"></FaCaretLeft>
+                    </button>
+                  )}
+                    renderCenterRightControls={({ nextSlide }) => (
+                      <button onClick={nextSlide} style={{ background: "none", border: 'none' }}>
+                        <FaCaretRight color="7938D2" fontSize="50px"></FaCaretRight>
+                      </button>
+                    )}
+                  >
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img1} width="100%" height="100%"></img>
+                      <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img2} width="100%" height="100%"></img>
+                      <button style={{ left: "30%", top: "45%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img3} width="100%" height="100%"></img>
+                      <button style={{ left: "27%", top: "67%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img4} width="100%" height="100%"></img>
+                      <button style={{ left: "55%", top: "40%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img5} width="100%" height="100%"></img>
+                      <button style={{ left: "50%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img6} width="100%" height="100%"></img>
+                      <button style={{ left: "70%", top: "10%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img7} width="100%" height="100%"></img>
+                      <button style={{ left: "40%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img8} width="100%" height="100%"></img>
+                      <button style={{ left: "70%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img9} width="100%" height="100%"></img>
+                      <button style={{ left: "45%", top: "20%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
+                    <Box display="flex" width="100%" height="100%" position="relative">
+                      <img src={img10} width="100%" height="100%"></img>
+                      <button style={{ left: "25%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                    </Box>
 
-              </Carousel>
-            </Box>
-          </div>
+                  </Carousel>
+                </Box>
+              </div>
 
-          <div id="side-image">
-            <Box display="flex" alignItems="center" justifyContent="center" color="white" fontSize="20px" fontWeight="300">
-              GARMENT SHOWCASE
-            </Box>
-            <Box display="flex" width="90%" marginTop="15%">
-              <Carousel renderCenterLeftControls={({ previousSlide }) => (
-                <button onClick={previousSlide} style={{ background: "none", border: 'none' }}>
-                  <FaCaretLeft color="7938D2" fontSize="50px"></FaCaretLeft>
-                </button>
-              )}
-                renderCenterRightControls={({ nextSlide }) => (
-                  <button onClick={nextSlide} style={{ background: "none", border: 'none' }}>
-                    <FaCaretRight color="7938D2" fontSize="50px"></FaCaretRight>
-                  </button>
-                )}
-              >
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img1} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img2} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "30%", top: "45%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img3} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "27%", top: "67%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img4} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "55%", top: "40%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img5} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "50%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img6} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "70%", top: "10%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img7} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "40%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img8} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "70%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img9} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "45%", top: "20%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
-                <Box display="flex" width="100%" height="100%" position="relative">
-                  <img src={img10} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
-                  <button style={{ left: "25%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
-                </Box>
+              <div id="side-image">
+                {!select1 ?
+                  <>
+                    <Box display="flex" alignItems="center" justifyContent="center" color="white" fontSize="20px" fontWeight="300">
+                      GARMENT SHOWCASE
+                    </Box>
+                    <Box display="flex" width="90%" marginTop="15%">
+                      <Carousel renderCenterLeftControls={({ previousSlide }) => (
+                        <button onClick={previousSlide} style={{ background: "none", border: 'none' }}>
+                          <FaCaretLeft color="7938D2" fontSize="50px"></FaCaretLeft>
+                        </button>
+                      )}
+                        renderCenterRightControls={({ nextSlide }) => (
+                          <button onClick={nextSlide} style={{ background: "none", border: 'none' }}>
+                            <FaCaretRight color="7938D2" fontSize="50px"></FaCaretRight>
+                          </button>
+                        )}
+                      >
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img1} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img2} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "30%", top: "45%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img3} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "27%", top: "67%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img4} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "55%", top: "40%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img5} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "50%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img6} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "70%", top: "10%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img7} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "40%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img8} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "70%", top: "30%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img9} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "45%", top: "20%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
+                        <Box display="flex" width="100%" height="100%" position="relative">
+                          <img src={img10} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <button style={{ left: "25%", top: "50%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
+                        </Box>
 
-              </Carousel>
-            </Box>
+                      </Carousel>
+                    </Box>
+                  </> :
+                  <>
+                    <Box display="flex" alignItems="center" justifyContent="center" color="white" fontSize="20px" fontWeight="300">
+                      FAITH TRIBE
+                    </Box>
+                    <Box display="flex" width="90%" marginTop="15%">
+                      <Box display="flex" width="100%" height="100%" position="relative" borderRadius="10px" bgcolor="white">
+                        <img src={left_slide1} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                      </Box>
+                    </Box>
+                  </>
+                }
 
-          </div>
-          {/* <div id="side-image">
+              </div>
+              {/* <div id="side-image">
             <button id="tip-button-shirt" className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button>
             <button id="tip-button-shorts" className="tip-button" onClick={() => onHandleTip("shorts", "block")}><img src="/icon-tip-button.svg" alt="tip butto icon" /></button>
             <button id="tip-button-boots" className="tip-button" onClick={() => onHandleTip("boots", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button>
@@ -281,42 +300,42 @@ function App() {
             </div>
           </div>
                 */}
-          <div id="tip-card-shirt" className="tip-card">
-            <div className="tip-title">SHIRT SKIRT</div>
-            <div className="tip-category">
-              <div className="tip-category-title">Item Name:</div>
-              <div className="tip-category-text">SHIRT SKIRT</div>
-            </div>
-            <div className="tip-category">
-              <div className="tip-category-title">Designed by:</div>
-              <div className="tip-category-text">FAITH CONNEXION TRIBE</div>
-            </div>
-            <div className="tip-category">
-              <div className="tip-category-title">Collection:</div>
-              <div className="tip-category-text">PRE FALL 2015</div>
-            </div>
-            <div className="tip-category">
-              <div className="tip-category-title">Item Type:</div>
-              <div className="tip-category-text">SKIRT</div>
-            </div>
-            <div className="tip-category">
-              <div className="tip-category-title">Materials:</div>
-              <div className="tip-category-text">DENIM, COTON, WOOL</div>
-            </div>
-            <br />
-            <div className="tip-content">
-              The Shirt skirt is a pure and original creation
-              from the Faith Connexion tribe ! This iconic skirt
-              exists since season one, and has been declined
-              many times : from Scottish wool to bleached
-              fabrics and Japanese lurex cotton, the shirt skirt
-              had also been fringed and embroidered, in both
-              short and long versions; The British singer Rita
-              Ora is a real fan of this item.
-            </div>
-            <button className="tip-close-button" onClick={() => onHandleTip("shirt", "none")}><img src="/btn-close.svg" alt="close button" /></button>
-          </div>
-          {/*
+              <div id="tip-card-shirt" className="tip-card">
+                <div className="tip-title">SHIRT SKIRT</div>
+                <div className="tip-category">
+                  <div className="tip-category-title">Item Name: </div>
+                  <div className="tip-category-text">SHIRT SKIRT</div>
+                </div>
+                <div className="tip-category">
+                  <div className="tip-category-title">Designed by: </div>
+                  <div className="tip-category-text">FAITH CONNEXION TRIBE</div>
+                </div>
+                <div className="tip-category">
+                  <div className="tip-category-title">Collection: </div>
+                  <div className="tip-category-text">PRE FALL 2015</div>
+                </div>
+                <div className="tip-category">
+                  <div className="tip-category-title">Item Type: </div>
+                  <div className="tip-category-text">SKIRT</div>
+                </div>
+                <div className="tip-category">
+                  <div className="tip-category-title">Materials: </div>
+                  <div className="tip-category-text">DENIM, COTON, WOOL</div>
+                </div>
+                <br />
+                <div className="tip-content">
+                  The Shirt skirt is a pure and original creation
+                  from the Faith Connexion tribe !This iconic skirt
+                  exists since season one, and has been declined
+                  many times: from Scottish wool to bleached
+                  fabrics and Japanese lurex cotton, the shirt skirt
+                  had also been fringed and embroidered, in both
+                  short and long versions; The British singer Rita
+                  Ora is a real fan of this item.
+                </div>
+                <button className="tip-close-button" onClick={() => onHandleTip("shirt", "none")}><img src="/btn-close.svg" alt="close button" /></button>
+              </div>
+              {/*
           <div id="tip-card-shorts" className="tip-card">
             <div className="tip-title">PAINTER SHORTS</div>
             <div className="tip-category">
@@ -387,46 +406,46 @@ function App() {
             </div>
             <button className="tip-close-button" onClick={() => onHandleTip("boots", "none")}><img src="/btn-close.svg" alt="close button" /></button>
           </div> */}
-          <button id="page-toggle-button" onClick={onClickBodyToggle}><img src={bodyOpen ? "/icon-toggle-close.svg" : "/icon-toggle-open.svg"} alt="toggle icon" /></button>
-          <div id="body-container" className="body-container" style={{ width: bodywidth }}>
-            <Navbar width={bodywidth} />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/whitepaper">
-                <Whitepaper />
-              </Route>
-              <Route path="/reserve">
-                <Reserve />
-              </Route>
-              <Route path="/claim">
-                <Claim />
-              </Route>
-            </Switch>
-            {/* <Footer /> */}
+              <button id="page-toggle-button" onClick={onClickBodyToggle}><img src={bodyOpen ? "/icon-toggle-close.svg" : "/icon-toggle-open.svg"} alt="toggle icon" /></button>
+              <div id="body-container" className="body-container" style={{ width: bodywidth }}>
+                <Navbar width={bodywidth} select1={select1} set_select={set_select}/>
+                <Switch>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route exact path="/about">
+                    <About />
+                  </Route>
+                  <Route exact path="/whitepaper">
+                    <Whitepaper />
+                  </Route>
+                  <Route exact path="/reserve">
+                    <Reserve flag_con_wallet={flag_con_wallet}/>
+                  </Route>
+                  <Route exact path="/claim">
+                    <Claim flag_con_wallet={flag_con_wallet}/>
+                  </Route>
+                </Switch>
+                {/* <Footer /> */}
+              </div>
+              <button id="nav-modal-toggle-button" onClick={onClickModalToggle}><img src={navModalOpen ? "/btn-close.svg" : "/icon-toggle-nav-modal-open.svg"} alt="toggle modal icon" /></button>
+              <div id="nav-modal">
+                <button className="button-blue-border width-100">CONNECT A WALLET</button>
+                <div className="nav-text">HOME</div>
+                {/* <div className="nav-text">HOW IT WORKS</div> */}
+                <div className="nav-text">WHITEPAPER</div>
+                <div className="nav-text">RESERVATION</div>
+                {/* <div className="nav-text">CLAIM</div> */}
+                <div className="nav-text">CLAIM</div>
+                <div className="showcase-menu-title">ART BASEL SHOWCASE</div>
+                <div className="showcase-menu-text">PROPOSALS</div>
+                <div className="showcase-menu-text">GOVERNANCE</div>
+                <div className="showcase-menu-text">HELP</div>
+              </div>
+            </div>
           </div>
-          <button id="nav-modal-toggle-button" onClick={onClickModalToggle}><img src={navModalOpen ? "/btn-close.svg" : "/icon-toggle-nav-modal-open.svg"} alt="toggle modal icon" /></button>
-          <div id="nav-modal">
-            <button className="button-blue-border width-100">CONNECT A WALLET</button>
-            <div className="nav-text">HOME</div>
-            {/* <div className="nav-text">HOW IT WORKS</div> */}
-            <div className="nav-text">WHITEPAPER</div>
-            <div className="nav-text">Reservation Event</div>
-            {/* <div className="nav-text">CLAIM</div> */}
-            <div className="nav-text">SHOP</div>
-            <div className="showcase-menu-title">ART BASEL SHOWCASE</div>
-            <div className="showcase-menu-text">PROPOSALS</div>
-            <div className="showcase-menu-text">GOVERNANCE</div>
-            <div className="showcase-menu-text">HELP</div>
-          </div>
-        </div>
-      </div>
-    </Router>
-    </Web3ReactProvider>
+        </Router>
+      </Web3ReactProvider>
     </>
   );
 }

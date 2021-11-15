@@ -66,11 +66,11 @@ export default function Home() {
 				</div>
 			</div> */}
 			<div className="text-wrapper">
-				<div className="text-gradient-big2 text-subtitle" style={{textAlign:'right'}}>RESERVE NOW</div>
+				<div className="text-gradient-big2 text-subtitle" style={{textAlign:'right'}}>RESERVATION</div>
 				<div className="text-content-gray" style={{marginTop:"30px"}}>To support the initial launch of the platform, the FAITH TRIBE coin is available now and can be reserved simply by depositing Ethereum into the community reservation smart contract. Click Connect Wallet to complete the process.
 					<br /><br />
 				</div>
-				<button className="button-blue-border">CONNECT WALLET</button>
+				{/* <button className="button-blue-border">CONNECT WALLET</button> */}
 			</div>
 			{/* <div className="text-wrapper">
 				<div className="text-gradient-big text-subtitle">TEAM</div>
