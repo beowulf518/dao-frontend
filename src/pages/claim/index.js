@@ -186,10 +186,12 @@ export default function Claim({ flag_con_wallet }) {
 
 const Before = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'none' : 'flex'};
+	margin-bottom: 5%;
 `
 
 const Success = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'flex' : 'none'};
+	margin-bottom: 5%;
 `
 
 const Btn_reserve = styled(Box)`

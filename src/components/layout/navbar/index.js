@@ -11,6 +11,7 @@ export default function Navbar(props) {
 			<div className="navbar-item-list">
 				<div className="navbar-item" onClick={() => {
 					history.push('/');
+					props.set_select(false);
 				}}>HOME</div>
 				<div className="navbar-item" onClick={() => {
 					history.push('/whitepaper');
