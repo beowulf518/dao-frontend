@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
 } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import styled from 'styled-components'
@@ -40,12 +41,11 @@ import Carousel from 'nuka-carousel';
 import Btn_hotstop from './components/buttons/hotspot'
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
+import { useHistory } from "react-router";
 
 function getLibrary(provider) {
   return new Web3(provider)
 }
-
-
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -74,9 +74,10 @@ function App() {
   const [bodyOpen, setBodyOpen] = useState(false)
   const [navModalOpen, setNavModalOpen] = useState(false)
   const [currentTip, setCurrentTip] = useState("")
-  const [ select1, set_select] = useState(false);
+  const [select1, set_select] = useState(false);
   const mobileMaxWidth = 625;
   let sidewidth = 862 * (height - 72) / 1864
+  const history = useHistory();
 
   const bodywidth = width - sidewidth
   useEffect(() => {
@@ -148,7 +149,7 @@ function App() {
                 {/* <button id="tip-button-shirt" className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button>
             <button id="tip-button-shorts" className="tip-button" onClick={() => onHandleTip("shorts", "block")}><img src="/icon-tip-button.svg" alt="tip butto icon" /></button>
             <button id="tip-button-boots" className="tip-button" onClick={() => onHandleTip("boots", "block")}><img src="/icon-tip-button.svg" alt="tip button icon" /></button> */}
-                <Box display="flex" width="100%" height="100%" alignItems="center" justifyContent="center">
+                <Box display="flex" width="100%"  alignItems="center" justifyContent="center">
                   <Carousel renderCenterLeftControls={({ previousSlide }) => (
                     <button onClick={previousSlide} style={{ background: "none", border: 'none' }}>
                       <FaCaretLeft color="7938D2" fontSize="50px"></FaCaretLeft>
@@ -224,7 +225,7 @@ function App() {
                         )}
                       >
                         <Box display="flex" width="100%" height="100%" position="relative">
-                          <img src={img1} style={{ borderRadius: "10px" }} width="100%" height="100%"></img>
+                          <img src={img1} style={{ borderRadius: "10px" }} width="100%" ></img>
                           <button style={{ left: "55%", top: "35%" }} className="tip-button" onClick={() => onHandleTip("shirt", "block")}><img src="./icon-tip-button.svg" alt="tip button icon" /></button>
                         </Box>
                         <Box display="flex" width="100%" height="100%" position="relative">
@@ -408,7 +409,7 @@ function App() {
           </div> */}
               <button id="page-toggle-button" onClick={onClickBodyToggle}><img src={bodyOpen ? "/icon-toggle-close.svg" : "/icon-toggle-open.svg"} alt="toggle icon" /></button>
               <div id="body-container" className="body-container" style={{ width: bodywidth }}>
-                <Navbar width={bodywidth} select1={select1} set_select={set_select}/>
+                <Navbar width={bodywidth} select1={select1} set_select={set_select} />
                 <Switch>
                   <Route exact path="/">
                     <Home />
@@ -420,27 +421,72 @@ function App() {
                     <Whitepaper />
                   </Route>
                   <Route exact path="/reserve">
-                    <Reserve flag_con_wallet={flag_con_wallet}/>
+                    <Reserve flag_con_wallet={flag_con_wallet} />
                   </Route>
                   <Route exact path="/claim">
-                    <Claim flag_con_wallet={flag_con_wallet}/>
+                    <Claim flag_con_wallet={flag_con_wallet} />
                   </Route>
                 </Switch>
                 {/* <Footer /> */}
               </div>
               <button id="nav-modal-toggle-button" onClick={onClickModalToggle}><img src={navModalOpen ? "/btn-close.svg" : "/icon-toggle-nav-modal-open.svg"} alt="toggle modal icon" /></button>
               <div id="nav-modal">
-                <button className="button-blue-border width-100">CONNECT A WALLET</button>
-                <div className="nav-text">HOME</div>
+                {/* <button className="button-blue-border width-100">CONNECT A WALLET</button> */}
+                <div className="nav-text" onClick={() => {
+                  setNavModalOpen(false);
+                  set_select(false);
+                  document.getElementById("nav-modal").style.display = "none"
+                  document.getElementById("page-toggle-button").style.position = "absolute"
+                  document.getElementById("page-toggle-button").style.bottom = "55%"
+                  document.getElementById("body-container").style.display = "block"
+                  setBodyOpen(true);
+                  
+
+                }}><Link to="/" style={{ textDecoration: 'none', color:'white' }}>HOME</Link></div>
                 {/* <div className="nav-text">HOW IT WORKS</div> */}
-                <div className="nav-text">WHITEPAPER</div>
-                <div className="nav-text">RESERVATION</div>
+                <div className="nav-text" onClick={() => {
+                  setNavModalOpen(false);
+                  document.getElementById("nav-modal").style.display = "none"
+                  document.getElementById("page-toggle-button").style.position = "absolute"
+                  document.getElementById("page-toggle-button").style.bottom = "55%"
+                  document.getElementById("body-container").style.display = "block"
+                  setBodyOpen(true);
+
+                }}><Link to="/whitepaper" style={{ textDecoration: 'none', color:'white' }}>WHITEPAPER</Link></div>
+                <div className="nav-text" onClick={() => {
+                  setNavModalOpen(false);
+                  set_select(true);
+                  document.getElementById("nav-modal").style.display = "none"
+                  document.getElementById("page-toggle-button").style.position = "absolute"
+                  document.getElementById("page-toggle-button").style.bottom = "55%"
+                  document.getElementById("body-container").style.display = "block"
+                  setBodyOpen(true);
+
+
+                }}><Link to="/reserve" style={{ textDecoration: 'none', color:'white' }}>RESERVATION</Link></div>
                 {/* <div className="nav-text">CLAIM</div> */}
-                <div className="nav-text">CLAIM</div>
-                <div className="showcase-menu-title">ART BASEL SHOWCASE</div>
-                <div className="showcase-menu-text">PROPOSALS</div>
-                <div className="showcase-menu-text">GOVERNANCE</div>
-                <div className="showcase-menu-text">HELP</div>
+                <div className="nav-text" onClick={() => {
+                  setNavModalOpen(false);
+                  set_select(true);
+                  document.getElementById("nav-modal").style.display = "none"
+                  document.getElementById("page-toggle-button").style.position = "absolute"
+                  document.getElementById("page-toggle-button").style.bottom = "55%"
+                  document.getElementById("body-container").style.display = "block"
+                  setBodyOpen(true);
+
+                }}><Link to="/claim" style={{ textDecoration: 'none', color:'white' }}>CLAIM</Link></div>
+                <div className="showcase-menu-title" onClick={()=>{setNavModalOpen(false);
+                
+                document.getElementById("nav-modal").style.display = "none"}}><Link to="/art" style={{ textDecoration: 'none', color:'white' }}>ART BASEL SHOWCASE</Link></div>
+                <div className="showcase-menu-text" onClick={()=>{setNavModalOpen(false);
+                document.getElementById("nav-modal").style.display = "none"}}><Link to="/proposals" style={{ textDecoration: 'none' , color:'white'}}>PROPOSALS</Link></div>
+                <div className="showcase-menu-text" onClick={()=>{setNavModalOpen(false);
+                document.getElementById("nav-modal").style.display = "none"}}><Link to="/governance" style={{ textDecoration: 'none', color:'white' }}>GOVERNANCE</Link></div>
+                <div className="showcase-menu-text" onClick={() => {
+                  setNavModalOpen(false);
+                  document.getElementById("nav-modal").style.display = "none"
+
+                }}><Link to="/help" style={{ textDecoration: 'none' , color:'white'}}>HELP</Link></div>
               </div>
             </div>
           </div>

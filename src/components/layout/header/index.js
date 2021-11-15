@@ -28,7 +28,7 @@ import cache from '../../../utils/cache'
 
 
 
-export default function Header({flag_con_wallet, set_con_wallet}) {
+export default function Header({ flag_con_wallet, set_con_wallet }) {
 	const FORMATIC_API_KEY = "pk_live_9613401E26B091DA";
 	const FORTMATIC_KEY = "pk_test_8F16BED4B4CD6116" // for FORTMATIC testing
 	const PORTIS_ID = "1de60dd1-e77a-4efa-9278-93319070fef9" //https://dashboard.portis.io/
@@ -161,7 +161,7 @@ export default function Header({flag_con_wallet, set_con_wallet}) {
 					backdropFilter: 'blur(10px)'
 				}}
 			>
-				<Box sx={style1}>
+				<Connect_wallet1 sx={style1}>
 					<Box display="flex" justifyContent="center" marginBottom="2%" fontSize="72px" lineHeight="72px" fontWeight="200" sx={{
 						'background': 'linear-gradient(150deg,  #E4CB6F 20%,#DB5994 50% ,#7735BD 60%)',
 						'-webkit-background-clip': 'text',
@@ -172,16 +172,16 @@ export default function Header({flag_con_wallet, set_con_wallet}) {
 							<Box display="flex" fontSize='24px' fontWeight='bold' color='white' lineHeight='28px' marginTop="2%" justifyContent="flex-end" marginRight="2%"
 								onClick={() => {
 									set_connect(0);
-									handleClose();	
+									handleClose();
 									set_wallet([true, true, true, true, true]);
 									set_con_wallet(false);
 								}}><MdClose fontSize="24px" color="white"></MdClose></Box>
-							<Box display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >CONNECT TO A WALLET</Box>
-							<Box display="flex" fontSize='16px' ineHeight='19px' flexDirection="column" marginTop="2%">
+							<Letter_connect display="flex" fontSize='24px' color='white' lineHeight='28px' justifyContent="center" marginTop="2%" >CONNECT TO A WALLET</Letter_connect>
+							<Letter_wallet display="flex" fontSize='16px' ineHeight='19px' flexDirection="column" marginTop="2%">
 								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold">By connecting a wallet, you agree to Faith Connexion’s</Box>
 								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold"><Box color="white" style={{ textDecoration: 'underline' }}>Terms of Service</Box>{'\u00a0'} and acknowledge that you have read and </Box>
 								<Box display="flex" flex="1" justifyContent="center" fontSize="16px" lineHeight="19px" color="black" fontWeight="bold">understand the {'\u00a0'} <Box color="white" style={{ textDecoration: 'underline' }}>FAITH TRIBE protocol disclaimer.</Box></Box>
-							</Box>
+							</Letter_wallet>
 						</Box>
 						<Box display="flex" flex="4" flexDirection="column" alignItems="center" width="100%" marginTop="10%" marginBottom="10%" alignItems="center" justifyContent="center">
 							<Meta display='flex' width="80%" flex='1' marginTop="1%" marginBottom="1%" wallet0={wallet[0]} >
@@ -287,7 +287,7 @@ export default function Header({flag_con_wallet, set_con_wallet}) {
 
 						</Box>
 					</Box>
-				</Box>
+				</Connect_wallet1>
 			</Modal>
 			{/* <div className="wallet-result-modal" id="modal">
 				<h1>RESERVE FAITH TOKEN</h1>
@@ -323,6 +323,44 @@ export default function Header({flag_con_wallet, set_con_wallet}) {
 		</div>
 	);
 }
+
+const Connect_wallet1 = styled(Box)`
+
+	@media (max-width: 800px) {
+		width: 60% !important;
+	}
+	@media (max-width: 600px) {
+		width: 70% !important;
+	}
+	@media (max-width: 500px) {
+		width: 80% !important;
+	}
+	@media (max-width: 400px) {
+		width: 90% !important;
+	}
+`
+
+const Letter_connect = styled(Box)`
+	@media (max-width: 1000px) {
+		font-size: 22px !important;
+	}
+	@media (max-width: 800px) {
+		font-size: 20px !important;
+	}
+	@media (max-width: 600px) {
+		font-size: 18px !important;
+	}
+	@media (max-width: 400px) {
+		font-size: 15px !important;
+	}
+`
+
+const Letter_wallet = styled(Box)`
+	@media (max-width: 1140px) {
+		display: none !important;
+	}
+
+`
 
 const Meta = styled(Box)`
 	display: ${({ wallet0 }) => wallet0 ? 'flex !important' : 'none !important'};

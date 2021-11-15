@@ -17,9 +17,9 @@ export default function Home() {
 			</div>
 			<div className="text-wrapper1">
 				<div className="text-gradient-big1 text-subtitle" style={{textAlign:'center'}}>HOW IT WORKS</div>
-				<div style={{ display: "flex", flexWrap: "wrap",  textAlign:'center', justifyContent:'center', }}>
-					<div style={{ marginTop:'30px' }}>
-						<img src="./howitworks.png" alt="vector" className="vector-image" />
+				<div style={{ display: "flex", flexWrap: "wrap",  textAlign:'center', justifyContent:'center'}} width="100%">
+					<div style={{ marginTop:'30px' , marginLeft:"10%", marginRight:"10%"}}>
+						<img src="./howitworks.png" alt="vector" className="vector-image" width="100%" height="100%"/>
 					</div>
 					<div className="text-content-gray" style={{ marginTop:'43px' }}>
 						Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at

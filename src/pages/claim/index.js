@@ -63,8 +63,8 @@ export default function Claim({ flag_con_wallet }) {
 					<br />
 					You can receive up to...
 				</Box>
-				<Box display="flex" flex="1" justifyContent="center" alignItems="flex-start" color="white" fontSize="48px" lineHeight="28px" fontWeight="300">208704.7482 FAITH</Box>
-				<Box display="flex" flex="1" justifyContent="center" alignItems="flex-start" width="50%">
+				<Letter1 display="flex" flex="1" justifyContent="center" alignItems="flex-start" color="white" fontSize="48px" lineHeight="28px" fontWeight="300">208704.7482 FAITH</Letter1>
+				<Box display="flex" flex="1" justifyContent="center" alignItems="flex-start" width="100%">
 					<Btn_reserve1 display="flex" justifyContent="center" alignItems="center" onClick={() => { handleOpen() }}> START YOUR CLAIM PROCESS</Btn_reserve1>
 				</Box>
 
@@ -184,13 +184,50 @@ export default function Claim({ flag_con_wallet }) {
 	);
 }
 
+
+const Letter1 = styled(Box)`
+	@media (max-width: 1000px) {
+		font-size: 35px;
+	}
+		@media (max-width: 1000px) {
+			font-size: 30px;
+		}
+		@media (max-width: 800px) {
+			font-size: 25px;
+		}
+		@media (max-width: 700px) {
+			font-size: 20px;
+
+		}
+`
+
 const Before = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'none' : 'flex'};
 	margin-bottom: 5%;
+	@media (max-width: 1000px) {
+		width: 80% !important;
+	}
+	@media (max-width: 800px) {
+		width: 90% !important;
+	}
+	@media (max-width: 700px) {
+		width: 90% !important;
+
+	}
 `
 
 const Success = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'flex' : 'none'};
+	@media (max-width: 1000px) {
+		width: 70% !important;
+	}
+	@media (max-width: 800px) {
+		width: 80% !important;
+	}
+	@media (max-width: 700px) {
+		width: 90% !important;
+
+	}
 	margin-bottom: 5%;
 `
 
@@ -210,7 +247,7 @@ const Btn_reserve = styled(Box)`
 
 const Btn_reserve1 = styled(Box)`
 
-	width: 100%;
+	width: 50%;
 	height: 39px !important;
 	background: black;
 	border: 1px solid #06A9C0;
@@ -230,12 +267,37 @@ const Btn_reserve1 = styled(Box)`
 		border-image: linear-gradient(#DB5994, #E4CB6F, #06A9C0) 1 1 1;
 		background-color: #000;
 	}
+	@media (max-width: 1000px) {
+		width: 60% !important;
+		font-size: 14px;
+	}
+	@media (max-width: 800px) {
+		width: 70% !important;
+		font-size: 12px;
+	}
+	@media (max-width: 700px) {
+		width: 80% !important;
+		font-size: 10px;
+
+	}
 `
 
 const Box_letter = styled(Box)`
 	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	@media (max-width: 1000px) {
+		font-size: 60px;
+	}
+	@media (max-width: 800px) {
+		margin-top:20%;
+		font-size: 40px;
+	}
+	@media (max-width: 600px) {
+		font-size: 30px;
+
+	}
+
 `
 
 const Box_letter1 = styled(Box)`
@@ -248,6 +310,18 @@ const Box_letter1 = styled(Box)`
 	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	@media (max-width: 1000px) {
+		font-size: 30px;
+	}
+	@media (max-width: 800px) {
+		font-size: 25px;
+	}
+	@media (max-width: 700px) {
+		font-size: 20px;
+
+	}
+
+	
 `
 
 const Reserve_body = styled(Box)`
@@ -260,4 +334,5 @@ const Reserve_body = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: scroll;
 `

@@ -173,13 +173,36 @@
 			}
 		}
 
-		.connect-button-wrapper {
-			display: none;
+		// .connect-button-wrapper {
+		// 	display: none;
 
-			.button-blue-border {
-				font-size: 10px;
+		// 	.button-blue-border {
+		// 		font-size: 10px;
+		// 	}
+		// 	padding: 0 10px;
+		// }
+	}
+}
+
+@media (max-width: 425px) {
+	.header-wrapper {
+		justify-content: center;
+		#header-title {
+			align-self: flex-end;
+			.header-text {
+				font-size: 12px;
+				line-height: 20px;
+				letter-spacing: 0.215em;
 			}
-			padding: 0 10px;
 		}
+
+		// .connect-button-wrapper {
+		// 	display: none;
+
+		// 	.button-blue-border {
+		// 		font-size: 10px;
+		// 	}
+		// 	padding: 0 10px;
+		// }
 	}
 }

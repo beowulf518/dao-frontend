@@ -8,10 +8,10 @@
 		}
 
 		#mobile-back {
-			display: block;
+			display: flex;
 			position: relative;
 			width: 100%;
-			height: 100%;
+			background-color: black;
 			// background-image: url("./assets/heroimage.png");
 
 
@@ -71,7 +71,7 @@
 
 		#nav-modal-toggle-button {
 			display: block;
-			position: absolute;
+			position: fixed;
 			width: 35px;
 			height: 35px;
 			top: 90px;

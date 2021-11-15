@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Box, Modal } from '@material-ui/core'
 import { MdClose } from 'react-icons/md'
 import { FaMediumM } from 'react-icons/fa'
-import { BsArrowDown, BsDiscord, BsTwitter, BsTelegram} from 'react-icons/bs';
+import { BsArrowDown, BsDiscord, BsTwitter, BsTelegram } from 'react-icons/bs';
 
 import back_img1 from "../../assets/right_panel_reserve2.png";
 import eth1 from '../../assets/eth1.png';
@@ -57,14 +57,14 @@ export default function Reserve({ flag_con_wallet }) {
 			</Box>
 			<Before flag_success={flag_success} alignItems="center" flexDirection="column" width="60%" height="400px" border="1px solid rgb(112 63 145)" marginTop="5%" bgcolor="rgba(42, 20, 72, 0.85)">
 				<Box_letter1 display="flex" flex="1" justifyContent="center" alignItems="center">Reserve your faith tribe</Box_letter1>
-				<Box flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
+				<Letter2 flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
 					Reserve details go here. ipsum dolor sit amet, consectetuer adipiscing elit,<br />
 					sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna <br />
 					aliquam erat volutpat. <br />
 					<br />
 					Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper <br />
 					suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-				</Box>
+				</Letter2>
 				<Box display="flex" flex="1" justifyContent="center" alignItems="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">Balance: 21.33ETH</Box>
 				<Box display="flex" flex="1" justifyContent="center" alignItems="flex-start" width="28%">
 					<Btn_reserve1 display="flex" justifyContent="center" alignItems="center" onClick={() => { handleOpen() }}> RESERVE</Btn_reserve1>
@@ -74,14 +74,14 @@ export default function Reserve({ flag_con_wallet }) {
 
 			<Success flag_success={flag_success} alignItems="center" flexDirection="column" width="60%" height="341px" border="1px solid rgb(112 63 145)" marginTop="5%" bgcolor="rgba(42, 20, 72, 0.85)">
 				<Box_letter1 display="flex" flex="1" justifyContent="center" alignItems="center">RESERVATION SUCCESSFUL!</Box_letter1>
-				<Box flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
+				<Letter3 flex="2" textAlign="center" color="white" fontSize="16px" lineHeight="28px" fontWeight="normal">
 					Congratulations on reserving your FAITH TRIBE!
 					<br />
 					<br />
 
 					We encourage you to share on Twitter and join the FAITH CONNECTION <br />
 					TRIBE Discord to get involved in governance.
-				</Box>
+				</Letter3>
 				<Box display="flex" flex="1" alignItems="flex-start" width="40%">
 					<Box display="flex" flex="1" alignItems="center" justifyContent="center" >
 						<Box display="flex" borderRadius="100%" bgcolor="white" width="34px" height="34px" alignItems="center" justifyContent="center">
@@ -185,14 +185,67 @@ export default function Reserve({ flag_con_wallet }) {
 	);
 }
 
+const Letter3 = styled(Box)`
+	@media (max-width: 1200px) {
+		font-size:15px;
+	}
+	@media (max-width: 1000px) {
+		font-size: 12px;
+	}
+	@media (max-width: 800px) {
+		font-size: 10px;
+	}
+	@media (max-width: 700px) {
+		font-size: 8px;
+	}
+`
+
+const Letter2 = styled(Box)`
+	@media (max-width: 1200px) {
+		font-size:14px;
+	}
+	@media (max-width: 1000px) {
+		font-size: 12px;
+	}
+	@media (max-width: 800px) {
+		font-size: 10px;
+	}
+	@media (max-width: 700px) {
+		font-size: 8px;
+	}
+
+`
+
 const Before = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'none' : 'flex'};
 	margin-bottom: 5%;
+	@media (max-width: 1000px) {
+		width: 70% !important;
+	}
+	@media (max-width: 800px) {
+		width: 80% !important;
+	}
+	@media (max-width: 700px) {
+		width: 90% !important;
+
+	}
+	
 `
 
 const Success = styled(Box)`
 	display: ${({ flag_success }) => flag_success ? 'flex' : 'none'};
 	margin-bottom: 5%;
+	@media (max-width: 1000px) {
+		width: 70% !important;
+	}
+	@media (max-width: 800px) {
+		width: 80% !important;
+	}
+	@media (max-width: 700px) {
+		width: 90% !important;
+
+	}
+
 `
 
 const Btn_reserve = styled(Box)`
@@ -231,12 +284,42 @@ const Btn_reserve1 = styled(Box)`
 		border-image: linear-gradient(#DB5994, #E4CB6F, #06A9C0) 1 1 1;
 		background-color: #000;
 	}
+	@media (max-width: 1200px) {
+		font-size:15px;
+		height: 35px !important;
+	}
+	@media (max-width: 1000px) {
+		height: 30px !important;
+		font-size: 15px;
+	}
+	@media (max-width: 800px) {
+		height: 25px !important;
+		font-size: 12px;
+	}
+	@media (max-width: 700px) {
+		height: 20px !important;
+		font-size: 10px;
+	}
+	margin-bottom: 3%;
 `
 
 const Box_letter = styled(Box)`
 	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	@media (max-width: 1200px) {
+		font-size:65px;
+	}
+	@media (max-width: 1000px) {
+		font-size: 60px;
+	}
+	@media (max-width: 800px) {
+		margin-top:20%;
+		font-size: 50px;
+	}
+	@media (max-width: 700px) {
+		font-size: 40px;
+	}
 `
 
 const Box_letter1 = styled(Box)`
@@ -249,6 +332,19 @@ const Box_letter1 = styled(Box)`
 	background: linear-gradient(150deg,  #659900 20%,#DB5994 50% ,#7735BD 60%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	@media (max-width: 1200px) {
+		font-size: 30px;
+	}
+	@media (max-width: 1000px) {
+		font-size: 25px;
+	}
+	@media (max-width: 800px) {
+		font-size: 20px;
+	}
+	@media (max-width: 700px) {
+		font-size: 15px;
+
+	}
 `
 
 const Reserve_body = styled(Box)`
@@ -261,5 +357,6 @@ const Reserve_body = styled(Box)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: scroll;
 
 `
